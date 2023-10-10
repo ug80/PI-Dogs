@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    max-height: fit-content;
+    
+}
+
+.filtersContainer{
+    display: flex;
+    
+    justify-content: space-around;
+    max-width: 50%;
+}

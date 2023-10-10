@@ -1,0 +1,56 @@
+/* .cardContainer{
+    background-color: #95dada;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.cardImg{
+     width: 100px;
+    height: 70px; 
+    max-width: 20%;
+    
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cardContent {
+    padding-top: 70px;  Ajusta la altura de la imagen 
+    text-align: center;
+  } */
+
+
+  .cardContainer {
+    
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+  }
+  
+  
+
+  .cardImg {
+    max-width: 100%;
+    height: 200px; /* Ajusta la altura de la imagen a un valor fijo */
+  }
+  
+  
+  .cardContent {
+    margin-top: 10px; /* Espacio entre la imagen y el contenido */
+  }
+  
+  /* .temperament {
+    max-height: 80px;  Establece una altura máxima para la sección de temperamento 
+    overflow: hidden;
+  } */
+
+  .temperament {
+    max-height: 100px; /* Establece una altura máxima para la sección de temperamento */
+    overflow: hidden;
+    font-size: 10px; /* Reduce el tamaño del texto de temperament */
+  }

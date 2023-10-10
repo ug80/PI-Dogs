@@ -1,0 +1,40 @@
+/* .mainContainer {
+    display: flex;
+    max-height: 10%;    
+    justify-content:space-around;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.formStyle {
+    display: flex;
+    
+} */
+
+.mainContainer {
+    display: flex;
+    height: 60px; /* Ajusta la altura según tus necesidades */
+    justify-content: space-around;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px; /* Ajusta el espacio interno según tus necesidades */
+}
+
+.formStyle {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos del formulario */
+}
+
+.formStyle input {
+    margin-right: 10px; /* Ajusta el espacio entre el input y el botón */
+}
+
+.formStyle button {
+    background-color: #007BFF; /* Cambia el color de fondo según tus preferencias */
+    color: white; /* Cambia el color del texto según tus preferencias */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Ajusta el espacio interno del botón */
+    cursor: pointer;
+}

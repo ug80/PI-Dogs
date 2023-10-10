@@ -1,0 +1,44 @@
+.container {
+    max-width: 400px;
+    max-height: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .formGroup {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
+  .minMaxFields {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .minMaxFields input {
+    width: 45%; /* Ajusta el ancho según tus necesidades */
+  }
