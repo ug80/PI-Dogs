@@ -2,7 +2,7 @@
 const validate = (input) => {
     
     let errors={};
-    const regexName = /^[A-Za-z]+$/;
+    const regexName = /^[A-Za-z\s]+$/;
     const regexUrl = /^https?:\/\/\S+\.(?:png|jpe?g|gif|webp|bmp)$/i;
     const regexNum = /^\d+(\.\d+)?$/;
 
@@ -35,10 +35,19 @@ const validate = (input) => {
     if(!regexNum.test(input.life_span_min)) errors.life_span_min = 'solo puede ingresar  números';
     if(!input.life_span_min) errors.life_span_min ='Debe ingresar minima espectativa de vida';
 
+    
+
     if(!regexNum.test(input.life_span_max)) errors.life_span_max = 'solo puede ingresar  números';
     if(!input.life_span_max) errors.life_span_max= 'Debe ingresar máxima espectativa de vida';
     if(+input.life_span_max <= +input.life_span_min) errors.life_span_max = 'Debe ser mayor a la espectativa mínima'
 
+    if(input.temperament.length === 0) {
+        errors.temperament = 'Debe seleccionar al menos un temperamento';
+    } else {
+        errors.temperament = '';
+    }
+    
+    
 
     return errors;
 }

@@ -6,7 +6,17 @@
 
 .filtersContainer{
     display: flex;
-    
-    justify-content: space-around;
-    max-width: 50%;
+    margin-right:10px;
+    justify-content: space-between;
+    max-width: 100%;
+    padding-right: 10px;
+    padding-top: 10px;
 }
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajusta el margen superior según tu diseño */
+  }

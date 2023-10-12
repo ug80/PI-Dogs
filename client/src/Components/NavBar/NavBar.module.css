@@ -14,11 +14,12 @@
 
 .mainContainer {
     display: flex;
-    height: 60px; /* Ajusta la altura según tus necesidades */
+    height: 30px; /* Ajusta la altura según tus necesidades */
     justify-content: space-around;
     border: 1px solid grey;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px; /* Ajusta el espacio interno según tus necesidades */
+    align-items: center;
 }
 
 .formStyle {

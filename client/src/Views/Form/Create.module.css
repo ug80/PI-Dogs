@@ -42,3 +42,8 @@
   .minMaxFields input {
     width: 45%; /* Ajusta el ancho según tus necesidades */
   }
+
+  .errors {
+    color: red;
+    font-size: 10px; /* Ajusta el tamaño de fuente según tus preferencias */
+  }

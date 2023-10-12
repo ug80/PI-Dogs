@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 
 const getDogs = async () =>{
     
-    //consulto la base de datos
+    
     const dbDogsRaw = await Dog.findAll({include: [{
       model: Temperament,
       attributes: ['name'],
@@ -50,35 +50,101 @@ const getDogs = async () =>{
 
 
 
-const getDogByName = async (name)=>{
-  //const name = nameQuery.toLowerCase();
+
+
+// const getDogsByName = async (name) => {
+//   // Consultar la base de datos
+//   const dbSearchByName = await Dog.findAll({
+//     where: {
+//       name: {
+//         [Op.iLike]: `%${name}%`
+//       }
+//     },
+//     include: [
+//       {
+//         model: Temperament,
+//         attributes: ['name'],
+//         through: { attributes: [] }
+//       }
+//     ]
+//   });
+
+  
+//   const response = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data;
+//   const apiDogs = response.map(dog => {
+//     const temperaments = dog.temperament.split(',').map(temp => temp.trim());
+//     return {
+//       id: dog.id,
+//       name: dog.name,
+//       height: dog.height.metric,
+//       weight: dog.weight.metric,
+//       temperament: temperaments,
+//       life_span: dog.life_span,
+//       image: dog.image.url
+//     };
+//   });
+
+//   // Combinar resultados de la base de datos y la API
+//   //const allDogs = dbSearchByName.concat(apiDogs);
+//   const allDogs = [...dbSearchByName, ...apiDogs];
+
+//   return allDogs;
+// };
+
+const getDogsByName = async (name) => {
+  // Consultar la base de datos
   const dbSearchByName = await Dog.findAll({
-    where:{
-      name:{
+    where: {
+      name: {
         [Op.iLike]: `%${name}%`
       }
-    }
-  })
-  if(dbSearchByName.length){
-    return dbSearchByName;
-  }
+    },
+    include: [
+      {
+        model: Temperament,
+        attributes: ['name'],
+        through: { attributes: [] }
+      }
+    ]
+  });
 
-  const response =  (await (axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`))).data;
-  const dog = response[0];
-  const temperaments = dog.temperament.split(',').map(temp => temp.trim() );
-  const apiDog = {
-        id: dog.id,
-        name: dog.name,
-        height: dog.height.metric,
-        weight: dog.weight.metric,
-        temperament: temperaments,
-        life_span: dog.life_span,
-        image: dog.image.url
-  }
+  // Mapear y transformar los temperamentos de la base de datos
+  const dbDogs = dbSearchByName.map(dog => {
+    const temperaments = dog.Temperaments.map(temp => temp.name);
+    return {
+      id: dog.id,
+      name: dog.name,
+      height: dog.height,
+      weight: dog.weight,
+      temperament: temperaments,
+      life_span: dog.life_span,
+      image: dog.image
+    } 
+  });
 
-  return apiDog;
-  
-}
+  // Consultar la API externa
+  const response = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data;
+
+  // Procesar los resultados de la API
+  const apiDogs = response.map(dog => {
+    const temperaments = dog.temperament.split(',').map(temp => temp.trim());
+    return {
+      id: dog.id,
+      name: dog.name,
+      height: dog.height.metric,
+      weight: dog.weight.metric,
+      temperament: temperaments,
+      life_span: dog.life_span,
+      image: dog.image.url
+    };
+  });
+
+  // Combinar resultados de la base de datos y la API
+  const allDogs = [...dbDogs, ...apiDogs];
+
+  return allDogs;
+};
+
 
 
 
@@ -132,9 +198,8 @@ const getDogByID = async (id, source) => {
       }
     }
     
-    //const temperaments = dog.Temperaments;
+    
     const temperaments = dog.Temperaments.map(temp => temp.name);
-    //console.log("esto es temps: ", temps);
     return {
       id: dog.id,
       name: dog.name,
@@ -152,7 +217,7 @@ const getDogByID = async (id, source) => {
 
 module.exports = {
     getDogs,
-    getDogByName,
+    getDogsByName,
     getDogByID,
     createNewDog
 } 

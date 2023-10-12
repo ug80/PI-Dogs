@@ -9,5 +9,5 @@ export const FILTER = 'FILTER';
 export const ORDER = 'ORDER';
 export const FILTERORIGIN = 'FILTERORIGIN';
 export const ORDERBYWEIGHT = 'ORDERBYWEIGHT';
-
+export const SEARCHBYNAME = 'SEARCHBYNAME';
 

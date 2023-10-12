@@ -18,10 +18,7 @@ const NavBar = () => {
           </Link>
         </div>      
         
-           <form className={style.fromStyle}>
-            <input placeholder='busqueda'/>
-            <button>Buscar</button>
-          </form> 
+        
         
       
     </div>

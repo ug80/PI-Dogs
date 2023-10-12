@@ -1,5 +1,6 @@
 import axios from "axios";
-import { GET_DOGS, GET_DOG, GET_DETAILS, DELETE_DETAILS, GET_TEMPERAMENTS, PAGINATE, FILTER, ORDER, FILTERORIGIN, ORDERBYWEIGHT } from "./actionsType";
+import { GET_DOGS, GET_DOG, GET_DETAILS, DELETE_DETAILS, GET_TEMPERAMENTS, PAGINATE, 
+    FILTER, ORDER, FILTERORIGIN, ORDERBYWEIGHT, SEARCHBYNAME } from "./actionsType";
 
 
 export const getDogs = () => {
@@ -18,8 +19,12 @@ export const getDog = (id) => {
 
 export const getDetails = (id) => {
     return async function(dispatch){
-        const dog = (await (axios.get(`http://localhost:3001/dogs/${id}`))).data;
-        dispatch({type: GET_DETAILS, payload: dog});
+        try {
+            const dog = (await (axios.get(`http://localhost:3001/dogs/${id}`))).data;
+            dispatch({type: GET_DETAILS, payload: dog});
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -43,7 +48,7 @@ export const postDog = (state) => {
             await axios.post('http://localhost:3001/dogs', state);
             alert('Nueva raza creada exitosamente');
         } catch (error) {
-            alert("La raza nueva no se creo, ocurrió un error");
+            alert("No se pudo crear, ocurrió un error");
         }
     }
 }
@@ -112,6 +117,17 @@ export const orderByWeightAction = (order) =>{
             })
         } catch (error) {
             
+        }
+    }
+}
+
+export const searchByNameAction = (name) => {
+    return async function(dispatch){
+        try {
+            const dogs = (await (axios.get(`http://localhost:3001/dogs?name=${name}`))).data;
+            dispatch({type: SEARCHBYNAME, payload: dogs});
+        } catch (error) {
+            alert('No se encontro raza con ese nombre');
         }
     }
 }

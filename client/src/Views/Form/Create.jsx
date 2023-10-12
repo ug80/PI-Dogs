@@ -70,17 +70,43 @@ const Create = () => {
   console.log("esto es el input:", state)
   console.log("esto es errors: ", errors)
 
+  
+  // const disableButton = () => {
+  //   let disabled = true;
+    
+  //   for(let error in errors){
+  //     if(errors[error] === "") disabled = false;
+  //     else {
+  //       disabled = true;
+  //       break;
+  //     }
+  //   }
+  //   return disabled;
+  // }
+
   const disableButton = () => {
-    let disabled;
-    for(let error in errors){
-      if(errors[error] === "") disabled = false;
-      else {
-        disabled = true;
-        break;
+    for (let error in errors) {
+      if (errors[error] !== "") {
+        return true; 
       }
     }
-    return disabled;
-  }
+    
+    if (
+      state.name === "" ||
+      state.image === "" ||
+      state.height_min === "" ||
+      state.height_max === "" ||
+      state.weight_min === "" ||
+      state.weight_max === "" ||
+      state.life_span_min === "" ||
+      state.life_span_max === ""
+    ) {
+      return true; 
+    }
+    
+    return false; 
+  };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -122,7 +148,7 @@ const Create = () => {
             onChange={handleChange}
           />
         </div>
-        {errors.name ? <label>{errors.name}</label> : null}
+        {errors.name ? <label className={styles.errors}>{errors.name}</label> : null}
         
         <div className={styles.formGroup}>
           <label htmlFor="image">image:</label>
@@ -134,7 +160,7 @@ const Create = () => {
             onChange={handleChange}
           />
         </div>
-        {errors.image ? <label>{errors.image}</label> : null}
+        {errors.image ? <label className={styles.errors}>{errors.image}</label> : null}
        
           
         <div className={styles.formGroup}>
@@ -162,8 +188,8 @@ const Create = () => {
             />
           </div>
         </div>
-        {errors.weight_min ? <label>{errors.weight_min}</label> : null}
-        {errors.weight_max ? <label>{errors.weight_max}</label> : null}
+        {errors.weight_min ? <label className={styles.errors}>{errors.weight_min}</label> : null}
+        {errors.weight_max ? <label className={styles.errors}>{errors.weight_max}</label> : null}
         
         <div className={styles.formGroup}>
           <label htmlFor="height">Altura (en cm):</label>
@@ -190,8 +216,8 @@ const Create = () => {
             />
           </div>
         </div>
-        {errors.height_min ? <label>{errors.height_min}</label> : null}
-        {errors.height_max ? <label>{errors.height_max}</label> : null}
+        {errors.height_min ? <label className={styles.errors}>{errors.height_min}</label> : null}
+        {errors.height_max ? <label className={styles.errors}>{errors.height_max}</label> : null}
 
 
 
@@ -222,8 +248,8 @@ const Create = () => {
             />
           </div>
         </div>
-        {errors.life_span_min ? <label>{errors.life_span_min}</label> : null}
-        {errors.life_span_max ? <label>{errors.life_span_max}</label> : null}
+        {errors.life_span_min ? <label className={styles.errors}>{errors.life_span_min}</label> : null}
+        {errors.life_span_max ? <label className={styles.errors}>{errors.life_span_max}</label> : null}
 
         <div className={styles.formGroup}>
           <label htmlFor="temperament">Temperamento:</label>
@@ -250,7 +276,8 @@ const Create = () => {
           </span>
         ))}
         </div>
-       
+        {errors.temperament ? <label className={styles.errors}>{errors.temperament}</label> : null}
+
         <button type="submit" disabled={disableButton()} >Guardar</button>
       
       </form>
@@ -259,4 +286,4 @@ const Create = () => {
   
 }
 
-export default Create
+export default Create   

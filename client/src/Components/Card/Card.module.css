@@ -1,31 +1,10 @@
-/* .cardContainer{
-    background-color: #95dada;
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 25px;
-}
-
-.cardImg{
-     width: 100px;
-    height: 70px; 
-    max-width: 20%;
-    
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.cardContent {
-    padding-top: 70px;  Ajusta la altura de la imagen 
-    text-align: center;
-  } */
 
 
   .cardContainer {
     
     border: 1px solid grey;
-    border-radius: 5px;
-    padding: 25px;
+    border-radius: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra horizontalmente */
