@@ -3,7 +3,6 @@ import Cards from '../../Components/Cards/Cards';
 import style from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { useState, useEffect } from 'react';
-import Paginado from '../../Components/Paginado/Paginado';
 import { filterDogsAction, filterOriginAction, getDogs, getTeperaments, 
   orderDogsAction, paginateDogs, orderByWeightAction, searchByNameAction } from '../../Redux/actions';
 

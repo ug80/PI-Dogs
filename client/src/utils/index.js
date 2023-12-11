@@ -7,6 +7,7 @@ const validate = (input) => {
     const regexNum = /^\d+(\.\d+)?$/;
 
     //validacion del nombre
+    if(input.name.length > 20) errors.name = 'No debe superar los 20 caracteres';
     if(!regexName.test(input.name)) errors.name = 'El nombre debe contener solo letras';
     if (!input.name.length) errors.name = "Debe ingresar un nombre";
 

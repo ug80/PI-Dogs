@@ -33,7 +33,7 @@ const Detail = () => {
           <div>{dog.weight} kg</div>
           <div>{dog.life_span}</div>
         
-        {/* {dog.temperament.map((temp, i) => <div key={i}>{temp}</div>)} */}
+        {dog?.temperament?.map((temp, i) => <div key={i}>{temp}</div>)}
       </div>
     </div>
   )

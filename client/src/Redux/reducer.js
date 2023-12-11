@@ -8,6 +8,7 @@ const initialState = {
     dog:[],
     dogsBackUP: [],
     dogsBackUp2: [],
+    dogsBackUp3: [],
     detail: [],
     currentPage: 0,
     dogsFiltered:[],
@@ -30,6 +31,7 @@ const rootReducer = (state = initialState, action) =>{
                 dogs:[...action.payload].splice(0, ITEMS_PER_PAGE), 
                 dogsBackUP:action.payload,
                 dogsBackUp2: action.payload,
+                dogsBackUp3: action.payload,
                 totalPages: totalPages
             };  
 
@@ -60,14 +62,7 @@ const rootReducer = (state = initialState, action) =>{
             const prev_page = state.currentPage - 1;
             const firstIndex = action.payload === 'next' ? next_page * ITEMS_PER_PAGE : prev_page * ITEMS_PER_PAGE;
 
-            if (!isNaN(action.payload)) {
-                const pageNumber = Number(action.payload) - 1;
-                return {
-                  ...state,
-                  currentPage: pageNumber,
-                  dogs: [...state.dogsBackUP].splice(pageNumber * ITEMS_PER_PAGE, ITEMS_PER_PAGE),
-                };
-            }
+            
             
             if(state.filter){
 
@@ -90,7 +85,14 @@ const rootReducer = (state = initialState, action) =>{
             }
 
             
-
+            if (!isNaN(action.payload)) {
+                const pageNumber = Number(action.payload) - 1;
+                return {
+                  ...state,
+                  currentPage: pageNumber,
+                  dogs: [...state.dogsBackUP].splice(pageNumber * ITEMS_PER_PAGE, ITEMS_PER_PAGE),
+                };
+            }
 
             console.log("ACTION payload:---------------------------- ", action.payload)
             if(action.payload === 'next' && firstIndex >= state.dogsBackUP.length) return state;
@@ -103,16 +105,17 @@ const rootReducer = (state = initialState, action) =>{
             }
         }
 
-        case FILTER:
+        case FILTER://temperament
             console.log("esto es action.payload", action.payload);
             
             let filterByTemperament = [];
-            if(action.payload == 'all'){
+            if(action.payload === 'all'){
                 
                 return{
                     ...state,
-                    dogs: [...state.dogsBackUp2].splice(0, ITEMS_PER_PAGE),
-                    filter: false
+                    dogs: [...state.dogsBackUp3].splice(0, ITEMS_PER_PAGE),
+                    filter: false,
+                    totalPages: Math.ceil(dogsBackUp3.length / ITEMS_PER_PAGE), 
                 }
             } else{
                 filterByTemperament = [...state.dogsBackUP].filter((d)=>d.temperament.includes(action.payload));
